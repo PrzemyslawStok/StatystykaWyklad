@@ -56,10 +56,10 @@ if __name__ == '__main__':
     # proszę sprawdzić jak zmienia się rozkład w zależności od ilości liczb
     # proszę zwrócić uwagę na ilość słupków z danymi - noBars
 
-    # standardRandom(size=5, noBars=10)
+    standardRandom(size=10, noBars=100)
 
     # rozkład normalny
-    # normalDistribution(size=100, noBars=10)
+    normalDistribution(size=100, noBars=10)
 
     #Zad 1 proszę uzupełnić funkcję i użyć przygotowanego generatora z wykładu
     #ownDistribution(size=100, noBars=10)
