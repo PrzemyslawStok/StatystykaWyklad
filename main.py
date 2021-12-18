@@ -32,9 +32,13 @@ def plotHistorgram(array: np.ndarray, noBars: int):
     plot.show()
 
 
-def standardRandom(size: int, noBars: int):
+def standardRandom(size: int, noBars: int)->float:
+    startTime = timeit.default_timer()
     histogramArray: np.ndarray = np.random.random(size)
+    endTime = timeit.default_timer()
     plotHistorgram(histogramArray, noBars)
+
+    return endTime-startTime
 
 
 def normalDistribution(size: int, noBars: int):
@@ -45,8 +49,12 @@ def normalDistribution(size: int, noBars: int):
 
 def ownDistribution(size: int, noBars: int)->float:
     # tutaj proszę użyć własnej funkcji generującej dane
+    startTime = timeit.default_timer()
     histogramArray: np.ndarray = generator(size)
+    endTime = timeit.default_timer()
+
     plotHistorgram(histogramArray, noBars)
+    return endTime-startTime
 
 def printTime(time: float, name: str="generatora"):
     print(f"Czas działania {name}: {(time):0.5f}s")
@@ -70,11 +78,10 @@ if __name__ == '__main__':
     #Zad 1 proszę uzupełnić funkcję i użyć przygotowanego generatora z wykładu
     #(f"Czas działania generatora: {(endTime - startTime):0.5f}s")
 
-    startTime = timeit.default_timer()
-    ownDistribution(size=5, noBars=2)
-    endTime = timeit.default_timer()
+    printTime(standardRandom(size=1000_000, noBars=2), "generatora numpy")
+    printTime(ownDistribution(size=1000_000, noBars=2),"zbudowanego generatora")
 
-    print(f"Czas działania generatora: {(endTime - startTime):0.5f}s")
+
 
     # Zad 2 proszę utworzyć generator LFG - transarencja 6
     # ownDistribution1(size=100, noBars=10)
