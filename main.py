@@ -43,11 +43,13 @@ def normalDistribution(size: int, noBars: int):
     plotHistorgram(histogramArray, noBars)
 
 
-def ownDistribution(size: int, noBars: int):
+def ownDistribution(size: int, noBars: int)->float:
     # tutaj proszę użyć własnej funkcji generującej dane
     histogramArray: np.ndarray = generator(size)
     plotHistorgram(histogramArray, noBars)
 
+def printTime(time: float, name: str="generatora"):
+    print(f"Czas działania {name}: {(time):0.5f}s")
 
 if __name__ == '__main__':
     #np.random.seed(10)
