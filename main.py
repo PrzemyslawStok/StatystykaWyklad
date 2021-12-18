@@ -1,5 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plot
+import timeit
 
 #poniżej znajduje się funkcja generatora z przykładu z transparencji
 def generator(size: int) -> np.ndarray:
@@ -44,9 +45,12 @@ def normalDistribution(size: int, noBars: int):
 
 def ownDistribution(size: int, noBars: int):
     # tutaj proszę użyć własnej funkcji generującej dane
-    pass
+    histogramArray: np.ndarray = generator(size)
+    plotHistorgram(histogramArray, noBars)
+
 
 if __name__ == '__main__':
+    #np.random.seed(10)
     #wyświetlamy kilka liczb generowanych przez generator z wykłdu:
     print("Tablica wygenerowana przez przykładowy generator z wykładu: ")
     print(generator(5))
@@ -56,13 +60,19 @@ if __name__ == '__main__':
     # proszę sprawdzić jak zmienia się rozkład w zależności od ilości liczb
     # proszę zwrócić uwagę na ilość słupków z danymi - noBars
 
-    standardRandom(size=10, noBars=100)
+    #standardRandom(size=10, noBars=5)
 
     # rozkład normalny
-    normalDistribution(size=100, noBars=10)
+    #normalDistribution(size=100, noBars=1000)
 
     #Zad 1 proszę uzupełnić funkcję i użyć przygotowanego generatora z wykładu
-    #ownDistribution(size=100, noBars=10)
+    #(f"Czas działania generatora: {(endTime - startTime):0.5f}s")
+
+    startTime = timeit.default_timer()
+    ownDistribution(size=5, noBars=2)
+    endTime = timeit.default_timer()
+
+    print(f"Czas działania generatora: {(endTime - startTime):0.5f}s")
 
     # Zad 2 proszę utworzyć generator LFG - transarencja 6
     # ownDistribution1(size=100, noBars=10)
