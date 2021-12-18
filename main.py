@@ -1,8 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plot
 import timeit
+from numba import jit
 
 #poniżej znajduje się funkcja generatora z przykładu z transparencji
+@jit
 def generator(size: int) -> np.ndarray:
     # tutaj wybieram przykładowe liczby z tabelki z prezentacji
     a: int = 16807
@@ -12,7 +14,7 @@ def generator(size: int) -> np.ndarray:
     x_0 = 10  # tutaj możemy wybrać dowolną liczbę, przykładowo czas w milisekundach
     x_n = x_0
 
-    array: np.ndarray = np.empty(size, dtype=float)
+    array: np.ndarray = np.empty(size, dtype=np.float32)
     #x_0 opuszczamy - to nie jest wartość otrzymana z generatora
 
     for i in range(size):
@@ -20,6 +22,7 @@ def generator(size: int) -> np.ndarray:
         array[i] = x_n/m #jak podzielimy przez wartość maksymalną otrzymamy liczby z przedziału [0,1]
 
     return array
+
 
 def plotHistorgram(array: np.ndarray, noBars: int):
     # funkcja przygotowuje histogram z macierzy
@@ -78,8 +81,9 @@ if __name__ == '__main__':
     #Zad 1 proszę uzupełnić funkcję i użyć przygotowanego generatora z wykładu
     #(f"Czas działania generatora: {(endTime - startTime):0.5f}s")
 
-    printTime(standardRandom(size=1000_000, noBars=2), "generatora numpy")
-    printTime(ownDistribution(size=1000_000, noBars=2),"zbudowanego generatora")
+    printTime(standardRandom(size=1000_000, noBars=1), "generatora numpy")
+    printTime(ownDistribution(size=1000_000, noBars=1),"zbudowanego generatora")
+    printTime(ownDistribution(size=1000_000, noBars=1), "zbudowanego generatora - numba")
 
 
 
